@@ -1,8 +1,4 @@
 """
-Copy your Package and Truck classes here
-"""
-
-"""
 deliveryService
 """
 
@@ -181,9 +177,6 @@ def goToLocation(map,truck,dest,stops):
             truck.driveTo(dest,getDistance(map,truck.location,loc))
             stops.append(loc)
 
-
-
-"Part2"
 
 def deliveryService(map, truck:Truck, packages):
     
