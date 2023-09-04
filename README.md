@@ -1,5 +1,5 @@
 # Delivery Service
-<strong>Overview: </strong>Simulate a delivery truck service
+<strong>Overview: </strong>Simulate a delivery truck service.
 
 ### Task
 The task is to simulate a delivery truck. Each truck starts out empty but with a map with the addresses of the post service offices and the possible places it might need to deliver to. 
@@ -27,7 +27,7 @@ stored in a truck (assuming all packages are of the same volume).
 - mileage: the mileage of a truck.
 
 #### Methods
-The methods you need to define include the followings.
+The methods we define include the followings.
 - __init__(self, id, n, loc): Each truck is initialized with a unique identifier id, a size n and a location
 loc. No matter what type you choose for the collection of packages in a truck, it should be initalized
 to be empty.
@@ -45,3 +45,35 @@ package will be at the post-service office afterwards.
 rent location to loc is also provided in the parameter: dist and it needs to be added to the truck’s
 mileage attribute for record keeping.
 - getPackagesIds(self): return a Python list of the ids of the packages in self.packages.
+
+#### Delivery
+We say a <strong>map</strong> is an undirected and weighted graph G, represented as a Python list of tuples for the
+edges and their weights in the graph. Each tuple (u, v, w) in G means there is an edge from vertex u to
+vertex v such that the weight of the edge is w. Since the graph is undirected, you also need to consider
+the edge from v to u with weight w.
+Given a path $v_1, v_2, ..., v_n$ from location $v_1$ to location $v_n$, we say the weight of the path or the distance
+from $v_1$ to $v_n$ taking the path is the sum of the weight of all the edges on the path.
+
+Assumptions:
+- The map is connected, i.e., there is at least one path between any two locations.
+- The weight for every edge is non-negative.
+  
+Given a map with multiple post service offices, deliver all packages in all of the offices to their correct addresses.
+We write a function deliveryService function with 3 inputs: 
+- a map G;
+- a truck truck;
+- a Python list of packages that include all the packages involved
+
+The output is a pair (deliveredTo, stops), where
+- deliveredTo is a Python dictionary with keys being package ids (NOT packages) and values being
+addresses, such that deliveredTo[id] = addr means the package with id id is delivered to addr
+- tops is a Python list that contains all the stops the truck made in order.
+
+Lastly, implement BFS and DFS algorithms with the post service office being the source.
+Specifically, write two functions bfs and dfs. The input for each of the functions includes
+- the map G;
+- the post service office office.
+The output is a Python dictionary called path with keys being locations in G such that the value path[loc]
+for loc is the path from office to loc computed from the corresponding algorithm. Also, path[office]
+= [office]. The path from the office to each location can be reconstructed from the order of the locations
+visited.
